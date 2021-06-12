@@ -1,0 +1,26 @@
+version: "3.8"
+
+volumes:
+  postgres_data: {}
+  storage_data: {}
+
+services:
+  postgres:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file: src/.env
+
+  django:
+    build:
+      context: .
+      dockerfile: ./package/Dockerfile
+    volumes:
+      - storage_data:/src/media
+    depends_on:
+      - postgres
+    env_file: src/.env
+    ports:
+      - "9000:9000"
+    links:
+      - postgres
