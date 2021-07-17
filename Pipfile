@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+django-environ = "*"
+psycopg2 = "*"
+gunicorn = "*"
+uwsgi = "*"
+
+[dev-packages]
+drf-yasg = "*"
+docutils = "*"
+flake8 = "*"
+isort = "*"
+pytest-django = "*"
+django-queryinspect = "*"
+django-extensions = "*"
+ipython = "*"
+coverage = "*"
+
+[requires]
+python_version = "3.8"
