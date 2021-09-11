@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = ">=3.2,<4.0"
 djangorestframework = "*"
 django-environ = "*"
 psycopg2 = "*"
@@ -14,13 +14,13 @@ uwsgi = "*"
 [dev-packages]
 drf-yasg = "*"
 docutils = "*"
-flake8 = "*"
 isort = "*"
 pytest-django = "*"
 django-queryinspect = "*"
 django-extensions = "*"
 ipython = "*"
 coverage = "*"
+autopep8 = "*"
 
 [requires]
 python_version = "3.8"
