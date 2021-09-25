@@ -96,9 +96,9 @@ if env('DATABASE_URL', default = None):
 else:
     DATABASE_CONFIG = {
         'ENGINE': env('DB_ENGINE', default='django.db.backends.sqlite3'),
-        'NAME': env('POSTGRES_DB', default='db.sqlite3'),
-        'USER': env('POSTGRES_USER', default=''),
-        'PASSWORD': env('POSTGRES_PASSWORD', default=''),
+        'NAME': env('DB_NAME', default='db.sqlite3'),
+        'USER': env('DB_USER', default=''),
+        'PASSWORD': env('DB_PASSWORD', default=''),
         'HOST': env('DB_HOST', default=''),
         'PORT': env('DB_PORT', default=''),
     }
