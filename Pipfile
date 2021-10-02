@@ -16,11 +16,11 @@ drf-yasg = "*"
 docutils = "*"
 isort = "*"
 pytest-django = "*"
-django-queryinspect = "*"
 django-extensions = "*"
 ipython = "*"
 coverage = "*"
 autopep8 = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.8"

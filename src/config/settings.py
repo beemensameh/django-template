@@ -149,7 +149,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = env.str('DJANGO_STATIC_ROOT', '')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static/'),
+]
 
 # Media files
 
@@ -162,30 +166,80 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Docs
-
-SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-        'basic': {
-            'type': 'basic'
-        }
-    },
-    'LOGIN_URL': '/admin/login',
-    'LOGOUT_URL': '/admin/logout',
-}
-
-REDOC_SETTINGS = {
-   'LAZY_RENDERING': False,
-   'EXPAND_RESPONSES': '200',
-}
-
 # For debug mode
 
 if DEBUG:
-    MIDDLEWARE.insert(0, 'qinspect.middleware.QueryInspectMiddleware')
-
     INSTALLED_APPS += [
         'django.contrib.admindocs',
         'drf_yasg',
         'django_extensions',
     ]
+
+    # Debug Toolbar
+
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
+
+    INTERNAL_IPS = env.list(
+        'DEBUG_TOOLBAR_INTERNAL_IPS', default=['127.0.0.1'])
+
+    # Logging
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': '[{asctime}] ({levelname}) {module} {process:d} {thread:d} {message}',
+                'style': '{',
+            },
+            'simple': {
+                'format': '{levelname} {message}',
+                'style': '{',
+            },
+        },
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose',
+            },
+            'file': {
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'logging/debug.log'),
+            },
+        },
+        'root': {
+            'level': env.str('DJANGO_ROOT_LOG_LEVEL', 'INFO'),
+            'handlers': ['console'],
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'level': env.str('DJANGO_LOG_LEVEL', 'INFO'),
+                'propagate': False,
+            },
+            'django.db.backends': {
+                'level': 'DEBUG',
+                'handlers': ['console'],
+                'propagate': False,
+            },
+        },
+    }
+
+    # Docs
+
+    SWAGGER_SETTINGS = {
+        'SECURITY_DEFINITIONS': {
+            'basic': {
+                'type': 'basic'
+            }
+        },
+        'LOGIN_URL': '/admin/login',
+        'LOGOUT_URL': '/admin/logout',
+    }
+
+    REDOC_SETTINGS = {
+        'LAZY_RENDERING': False,
+        'EXPAND_RESPONSES': '200',
+    }
