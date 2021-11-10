@@ -16,7 +16,7 @@ uWSGI = "^2.0.20"
 [tool.poetry.dev-dependencies]
 drf-yasg = "^1.20.0"
 docutils = "^0.18"
-isort = "^5.9.3"
+isort = "^5.10.1"
 pytest-django = "^4.4.0"
 django-extensions = "^3.1.5"
 ipython = "^7.29.0"
