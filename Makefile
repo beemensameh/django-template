@@ -1,19 +1,22 @@
-pipenv = pipenv run
+venv = poetry run
 path = manage.py
 
 server:
-	cd src && $(pipenv) python $(path) runserver 0.0.0.0:9000
+	cd src && $(venv) python $(path) runserver 0.0.0.0:9000
 
 migrate:
-	cd src && $(pipenv) python $(path) makemigrations
-	cd src && $(pipenv) python $(path) migrate
+	cd src && $(venv) python $(path) makemigrations
+	cd src && $(venv) python $(path) migrate
+
+rollback:
+	cd src && $(venv) python $(path) migrate $(model) $(step)
 
 translation:
-	cd src && $(pipenv) python $(path) makemessages -l $(lang)
+	cd src && $(venv) python $(path) makemessages -l $(lang)
 
 complile_translation:
-	cd src && $(pipenv) python $(path) compilemessages
+	cd src && $(venv) python $(path) compilemessages
 
 lint:
-	cd src && $(pipenv) isort .
-	cd src && $(pipenv) autopep8 --in-place -r .
+	cd src && $(venv) autopep8 --in-place -r .
+	cd src && $(venv) isort .
