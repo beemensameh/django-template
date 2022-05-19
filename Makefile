@@ -20,3 +20,4 @@ complile_translation:
 lint:
 	cd src && $(venv) autopep8 --in-place -r .
 	cd src && $(venv) isort .
+	cd src && $(venv) flake8 --statistics .
