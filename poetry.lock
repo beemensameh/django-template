@@ -202,7 +202,7 @@ testing = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)"]
 name = "django-extensions"
 version = "3.1.5"
 description = "Extensions for Django"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -749,7 +749,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "6439696d93cca3b7ba64868e8559e142dae603e00a4080be97bd120b6c396438"
+content-hash = "dbaead54cd3a4adb122ae64b01d61e0abdc7982245f55f7ce8f6b13ab0551a85"
 
 [metadata.files]
 appnope = [

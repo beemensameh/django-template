@@ -55,7 +55,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # third party
     'rest_framework'
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -173,7 +176,6 @@ if DEBUG:
     INSTALLED_APPS += [
         'django.contrib.admindocs',
         'drf_yasg',
-        'django_extensions',
         'debug_toolbar',
     ]
 

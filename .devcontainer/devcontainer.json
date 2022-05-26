@@ -42,7 +42,8 @@
 		"batisteo.vscode-django",
 		"mrorz.language-gettext",
 		"GitHub.copilot",
-		"wholroyd.jinja"
+		"wholroyd.jinja",
+		"bungcip.better-toml"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
