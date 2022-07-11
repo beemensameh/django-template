@@ -16,7 +16,7 @@ django-extensions = "^3.2.0"
 
 [tool.poetry.dev-dependencies]
 drf-yasg = "^1.20"
-docutils = "^0.18"
+docutils = "^0.19"
 isort = "^5.10"
 pytest-django = "^4.5"
 ipython = "^8.4"
