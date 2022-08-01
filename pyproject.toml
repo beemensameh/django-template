@@ -23,7 +23,7 @@ ipython = "^8.4"
 coverage = "^6.4"
 autopep8 = "^1.6"
 django-debug-toolbar = "^3.5"
-flake8 = "^4.0.1"
+flake8 = "^5.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
