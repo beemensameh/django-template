@@ -22,7 +22,7 @@ pytest-django = "^4.5"
 ipython = "^8.4"
 coverage = "^6.4"
 autopep8 = "^1.7"
-django-debug-toolbar = "^3.5"
+django-debug-toolbar = "^3.6"
 flake8 = "^5.0"
 
 [build-system]
