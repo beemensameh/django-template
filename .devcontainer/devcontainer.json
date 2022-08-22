@@ -37,12 +37,8 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-python.python",
-		"ms-python.vscode-pylance",
-		"mikestead.dotenv",
 		"batisteo.vscode-django",
 		"mrorz.language-gettext",
-		"GitHub.copilot",
-		"wholroyd.jinja",
 		"bungcip.better-toml"
 	],
 
