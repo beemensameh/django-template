@@ -18,6 +18,6 @@ complile_translation:
 	cd src && $(venv) python $(path) compilemessages
 
 lint:
-	cd src && $(venv) autopep8 --in-place -r .
+	cd src && $(venv) autopep8 .
 	cd src && $(venv) isort .
-	cd src && $(venv) flake8 --statistics .
+	cd src && $(venv) flake8 .
