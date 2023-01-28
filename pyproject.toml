@@ -17,7 +17,7 @@ django-extensions = "^3.2"
 [tool.poetry.group.dev.dependencies]
 drf-yasg = "^1.21"
 docutils = "^0.19"
-isort = "^5.10"
+isort = "^5.11"
 pytest-django = "^4.5"
 ipython = "^8.5"
 coverage = "^6.5"
