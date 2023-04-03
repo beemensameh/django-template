@@ -6,7 +6,7 @@ authors = ["BeemenSameh <41084077+BeemenSameh@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^4.1"
+Django = "^4.2"
 djangorestframework = "^3.14"
 django-environ = "^0.10"
 psycopg2 = "^2.9"
