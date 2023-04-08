@@ -5,11 +5,11 @@ description = ""
 authors = ["BeemenSameh <41084077+BeemenSameh@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 Django = "^4.2"
 djangorestframework = "^3.14"
 django-environ = "^0.10"
-psycopg2 = "^2.9"
+psycopg = "^3.1"
 gunicorn = "^20.1"
 uWSGI = "^2.0"
 django-extensions = "^3.2"
@@ -19,10 +19,10 @@ drf-yasg = "^1.21"
 docutils = "^0.19"
 isort = "^5.12"
 pytest-django = "^4.5"
-ipython = "^8.11"
+ipython = "^8.12"
 coverage = "^7.2"
 autopep8 = "^2.0"
-django-debug-toolbar = "^3.8"
+django-debug-toolbar = "^4.0"
 flake8 = "^6.0"
 
 [build-system]
