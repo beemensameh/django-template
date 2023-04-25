@@ -21,3 +21,6 @@ lint:
 	cd src && $(venv) autopep8 -a --in-place -r .
 	cd src && $(venv) isort .
 	cd src && $(venv) flake8 --statistics .
+
+requirements:
+	poetry export --with=dev --without-hashes -o requirements.txt
