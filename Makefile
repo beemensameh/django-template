@@ -1,6 +1,9 @@
 venv = poetry run
 path = manage.py
 
+new-app:
+	cd src && $(venv) python $(path) startapp $(model)
+
 server:
 	cd src && $(venv) python $(path) runserver 0.0.0.0:9000
 
@@ -18,9 +21,12 @@ complile_translation:
 	cd src && $(venv) python $(path) compilemessages
 
 lint:
-	cd src && $(venv) autopep8 -a --in-place -r .
+	cd src && $(venv) black .
 	cd src && $(venv) isort .
 	cd src && $(venv) flake8 --statistics .
 
 requirements:
-	poetry export --with=dev --without-hashes -o requirements.txt
+	poetry export --without-hashes -o requirements.txt
+
+dev-requirements:
+	poetry export --with=dev --without-hashes -o requirements-dev.txt

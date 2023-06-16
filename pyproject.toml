@@ -15,16 +15,21 @@ uWSGI = "^2.0"
 django-extensions = "^3.2"
 
 [tool.poetry.group.dev.dependencies]
-drf-yasg = "^1.21"
-docutils = "^0.19"
+docutils = "^0.20"
 isort = "^5.12"
 pytest-django = "^4.5"
-ipython = "^8.13"
 coverage = "^7.2"
-autopep8 = "^2.0"
-django-debug-toolbar = "^4.0"
+django-debug-toolbar = "^4.1"
 flake8 = "^6.0"
+black = "^23.3"
+drf-spectacular = "^0.26.2"
+drf-spectacular-sidecar = "^2023.6.1"
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+target-version = ['py311']
+force-exclude = 'migrations'
