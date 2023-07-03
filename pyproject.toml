@@ -23,7 +23,7 @@ django-debug-toolbar = "^4.1"
 flake8 = "^6.0"
 black = "^23.3"
 drf-spectacular = "^0.26.2"
-drf-spectacular-sidecar = "^2023.6.1"
+drf-spectacular-sidecar = "^2023.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]
