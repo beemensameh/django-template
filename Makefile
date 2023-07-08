@@ -5,7 +5,7 @@ new-app:
 	cd src && $(venv) python $(path) startapp $(model)
 
 server:
-	cd src && $(venv) python $(path) runserver 0.0.0.0:9000
+	cd src && $(venv) python $(path) runserver 0.0.0.0:8000
 
 migrate:
 	cd src && $(venv) python $(path) makemigrations

@@ -21,6 +21,6 @@ services:
       - postgres
     env_file: src/.env
     ports:
-      - "9000:9000"
+      - "8000:8000"
     links:
       - postgres
