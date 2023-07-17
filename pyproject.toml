@@ -21,7 +21,7 @@ pytest-django = "^4.5"
 coverage = "^7.2"
 django-debug-toolbar = "^4.1"
 flake8 = "^6.0"
-black = "^23.3"
+black = "^23.7"
 drf-spectacular = "^0.26.3"
 drf-spectacular-sidecar = "^2023.7.1"
 
