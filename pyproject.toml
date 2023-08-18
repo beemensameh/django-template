@@ -1,33 +1,35 @@
-[tool.poetry]
-name = "django-template"
-version = "0.1.0"
+[project]
+name = ""
+version = ""
 description = ""
-authors = ["BeemenSameh <41084077+BeemenSameh@users.noreply.github.com>"]
+authors = [
+    {name = "beemensameh", email = "41084077+beemensameh@users.noreply.github.com"},
+]
+dependencies = [
+    "Django~=4.2",
+    "djangorestframework~=3.14",
+    "django-environ~=0.10",
+    "psycopg~=3.1",
+    "gunicorn~=21.2",
+    "uWSGI~=2.0",
+    "django-extensions~=3.2",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "MIT"}
 
-[tool.poetry.dependencies]
-python = "^3.11"
-Django = "^4.2"
-djangorestframework = "^3.14"
-django-environ = "^0.10"
-psycopg = "^3.1"
-gunicorn = "^21.2"
-uWSGI = "^2.0"
-django-extensions = "^3.2"
-
-[tool.poetry.group.dev.dependencies]
-docutils = "^0.20"
-isort = "^5.12"
-pytest-django = "^4.5"
-coverage = "^7.3"
-django-debug-toolbar = "^4.2"
-flake8 = "^6.1"
-black = "^23.7"
-drf-spectacular = "^0.26"
-drf-spectacular-sidecar = "^2023.8.1"
-
-[build-system]
-requires = ["poetry-core>=1.2.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.pdm.dev-dependencies]
+dev = [
+    "docutils~=0.20",
+    "isort~=5.12",
+    "pytest-django~=4.5",
+    "coverage~=7.3",
+    "django-debug-toolbar~=4.2",
+    "flake8~=6.1",
+    "black~=23.7",
+    "drf-spectacular~=0.26",
+    "drf-spectacular-sidecar~=2023.8",
+]
 
 [tool.black]
 line-length = 79

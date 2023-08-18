@@ -1,6 +1,6 @@
 # Microservice Template
 
-**Swagger UI:** link here .. 
+**Swagger UI:** link here ..
 
 ## Developer
 
@@ -23,7 +23,7 @@ Now, your project is set up and you can go ahead to create apps
 
 ## Deployment Instructions
 
-- In `docker-compose.yml`, replace the port number 8000 to the server deployment port number. 
+- In `docker-compose.yml`, replace the port number 8000 to the server deployment port number.
 - Rename `gitlab-ci-example.yml` to `gitlab-ci.yml`
 - In `gitlab-ci.yml`. Replace every `microservice-template` in any key you see to the microservice name.
 - SSH to the server and create a deployment environment file at `/xware/deployments/microservice-template/.env src/.env`

@@ -26,7 +26,7 @@ lint:
 	cd src && $(venv) flake8 --statistics .
 
 requirements:
-	poetry export --without-hashes -o requirements.txt
+	pdm export -f requirements --without-hashes --prod -o requirements.txt
 
 dev-requirements:
-	poetry export --with=dev --without-hashes -o requirements-dev.txt
+	pdm export -f requirements --without-hashes -d -o requirements-dev.txt
