@@ -1,4 +1,4 @@
-venv = poetry run
+venv = pdm run
 path = manage.py
 
 new-app:

@@ -15,21 +15,27 @@
 Now, your project is set up and you can go ahead to create apps
 
 ### Start development
-- Go to source folder `cd src`
-- Create a new app `./manage.py startapp <appname>`
-- Edit the settings file to include your app. `INSTALLED_APPS = ['cool-app', ]`.
+- Replace every `{{project_name}}` in any key you see to the microservice name.
+- Create a new app `make new-app app=<appname>`
+- Edit the settings file to include your app. `INSTALLED_APPS = ['<appname>', ]`.
 - Add your `url` files to `config/urls.py`
-- Run project: `./manage.py runserver`
+- Run project: `make server`
 
 ## Deployment Instructions
 
-- In `docker-compose.yml`, replace the port number 8000 to the server deployment port number.
+- Add some varibales in environment variables in CI/CD tool.
+    - `PG_DB_STAGING` is the database name in staging
+    - `PG_USER_STAGING` is the user name in staging
+    - `CONFIG_PATH_STAGING` is the env file path in staging
+    - `PG_DB_PROD` is the database name in production
+    - `PG_USER_PROD` is the uesr name in production
+    - `CONFIG_PATH_PRODUCTION` is the env file path in production
 - Rename `gitlab-ci-example.yml` to `gitlab-ci.yml`
-- In `gitlab-ci.yml`. Replace every `microservice-template` in any key you see to the microservice name.
-- SSH to the server and create a deployment environment file at `/xware/deployments/microservice-template/.env src/.env`
+- SSH to the server and create a deployment environment file at `.env`
 - Edit the keys in `.env`. Make sure you provide keys for the database so that the default SQLite database is ignored
-- Register the GitLab runner: `sudo gitlab-runner register`
-- `git push` on the main branch.
+- Register the CI/CD tool
+    - Register the GitLab runner: `sudo gitlab-runner register`
+- Push or merge on the main branch.
 
 ## Governance
 As deployment main, you should consider the following:

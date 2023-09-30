@@ -26,7 +26,7 @@ dev = [
     "coverage~=7.3",
     "django-debug-toolbar~=4.2",
     "flake8~=6.1",
-    "black~=23.7",
+    "black~=23.9",
     "drf-spectacular~=0.26",
     "drf-spectacular-sidecar~=2023.9",
 ]

@@ -1,0 +1,38 @@
+stages:
+  - test
+  - staging
+  - production
+
+testing:
+  stage: test
+  tags:
+    - testing
+  only:
+    - merge_request
+  script:
+    - docker compose --profile testing build
+    - docker compose --profile testing up --wait
+    - docker exec web_test sh -c 'python manage.py check && python manage.py test'
+    - docker compose --profile testing down
+
+staging:
+  stage: staging
+  tags:
+    - staging
+  environment: staging
+  only:
+    - staging
+  script:
+    - docker compose --profile staging build
+    - docker compose --profile staging up --wait
+
+production:
+  stage: production
+  tags:
+    - production
+  environment: production
+  only:
+    - main
+  script:
+    - docker compose --profile production build
+    - docker compose --profile production up --wait

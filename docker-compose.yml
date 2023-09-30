@@ -3,24 +3,99 @@ version: "3.8"
 volumes:
   postgres_data: {}
   storage_data: {}
+  storage_logs: {}
 
 services:
-  postgres:
+  postgres_testing:
     image: postgres:latest
+    profiles:
+      - testing
+    env_file: src/.env
+    environment:
+      - POSTGRES_DB=$PG_DB_STAGING
+      - POSTGRES_USER=$PG_USER_STAGING
+    healthcheck:
+      test: sh -c 'pg_isready -U $PG_USER_STAGING -d $PG_DB_STAGING'
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  django_test:
+    build:
+      context: .
+      dockerfile: ./package/Dockerfile
+    depends_on:
+      postgres_testing:
+        condition: service_healthy
+    env_file: $CONFIG_PATH_STAGING/.env
+    links:
+      - "postgres:database"
+
+  postgres_staging:
+    image: postgres:latest
+    profiles:
+      - staging
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    env_file: src/.env
+    environment:
+      - POSTGRES_DB=$PG_DB_STAGING
+      - POSTGRES_USER=$PG_USER_STAGING
+    healthcheck:
+      test: sh -c 'pg_isready -U $PG_USER_STAGING -d $PG_DB_STAGING'
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "127.0.0.1:5432:5432"
+
+  django_staging:
+    build:
+      context: .
+      dockerfile: ./packaging/staging/Dockerfile
+    profiles:
+      - staging
+    volumes:
+      - web_media:/src/media:rw
+      - web_logs:/src/logging:rw
+    depends_on:
+      postgres_staging:
+        condition: service_healthy
+    env_file: $CONFIG_PATH_STAGING/.staging.env
+    ports:
+      - "127.0.0.1:8000:8000"
+    links:
+      - "postgres_staging:database"
+
+  postgres:
+    image: postgres:latest
+    profiles:
+      - production
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file: $CONFIG_PATH_PRODUCTION/.env
+    environment:
+      - POSTGRES_DB=$PG_DB_PROD
+      - POSTGRES_USER=$PG_USER_PROD
+    healthcheck:
+      test: sh -c 'pg_isready -U $PG_USER_PROD -d $PG_DB_PROD'
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "127.0.0.1:5432:5432"
 
   django:
     build:
       context: .
       dockerfile: ./package/Dockerfile
     volumes:
-      - storage_data:/src/media
+      - storage_logs:/src/logging:rw
+      - storage_data:/src/media:rw
     depends_on:
-      - postgres
-    env_file: src/.env
+      postgres:
+        condition: service_healthy
+    env_file: $CONFIG_PATH_PRODUCTION/.env
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     links:
-      - postgres
+      - "postgres:database"
