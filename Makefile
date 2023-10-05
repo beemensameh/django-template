@@ -2,7 +2,7 @@ venv = pdm run
 path = manage.py
 
 new-app:
-	cd src && $(venv) python $(path) startapp $(model)
+	cd src && $(venv) python $(path) startapp $(app)
 
 server:
 	cd src && $(venv) python $(path) runserver 0.0.0.0:8000
