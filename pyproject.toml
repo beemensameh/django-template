@@ -28,7 +28,7 @@ dev = [
     "flake8~=6.1",
     "black~=23.9",
     "drf-spectacular~=0.26",
-    "drf-spectacular-sidecar~=2023.9",
+    "drf-spectacular-sidecar~=2023.10",
 ]
 
 [tool.black]
