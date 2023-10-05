@@ -23,7 +23,6 @@ dev = [
     "docutils~=0.20",
     "isort~=5.12",
     "pytest-django~=4.5",
-    "coverage~=7.3",
     "django-debug-toolbar~=4.2",
     "flake8~=6.1",
     "black~=23.9",
