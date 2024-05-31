@@ -1,0 +1,20 @@
+line-length = 85
+target-version = "py311"
+extend-exclude = ["migrations", "manage.py"]
+
+[format]
+indent-style = "space"
+line-ending = "lf"
+
+[lint]
+extend-select = ["I", "DJ"]
+ignore = ["DJ007", "DJ008"]
+
+[lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = ["config", "utils", "api_users", "block_ips", "central_points", "collectings", "customers", "governorates", "notifications", "orders", "price_lists", "regions", "vehicle_types", "vendors"]
+section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
+
+[lint.isort.sections]
+"django" = ["django"]

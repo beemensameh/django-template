@@ -1,29 +1,32 @@
-venv = pdm run
-path = manage.py
-
 new-app:
-	cd src && $(venv) python $(path) startapp $(app)
+	cd src && python manage.py startapp $(app)
 
 server:
-	cd src && $(venv) python $(path) runserver 0.0.0.0:8000
+	cd src && python manage.py runserver 0.0.0.0:8000
+
+makemigrations:
+	cd src && python manage.py makemigrations
 
 migrate:
-	cd src && $(venv) python $(path) makemigrations
-	cd src && $(venv) python $(path) migrate
+	cd src && python manage.py migrate
+
+migrate-all: makemigrations migrate
 
 rollback:
-	cd src && $(venv) python $(path) migrate $(model) $(step)
+	cd src && python manage.py migrate $(app) $(step)
 
-translation:
-	cd src && $(venv) python $(path) makemessages -l $(lang)
+trans:
+	cd src && python manage.py makemessages -l $(lang)
 
 complile_translation:
-	cd src && $(venv) python $(path) compilemessages
+	cd src && python manage.py compilemessages
 
 lint:
-	cd src && $(venv) black .
-	cd src && $(venv) isort .
-	cd src && $(venv) flake8 --statistics .
+	cd src && ruff check . --fix
+	cd src && ruff format
+
+test:
+	cd src && python manage.py test
 
 requirements:
 	pdm export -f requirements --without-hashes --prod -o requirements.txt
