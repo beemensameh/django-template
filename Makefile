@@ -33,3 +33,8 @@ requirements:
 
 dev-requirements:
 	pdm export -f requirements --without-hashes -d -o requirements-dev.txt
+
+test:
+	cd src && python manage.py check
+	cd src && python manage.py makemigrations --check
+	cd src && python manage.py test

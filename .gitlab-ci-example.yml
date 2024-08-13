@@ -9,9 +9,10 @@ testing:
     - testing
   only:
     - merge_request
+  before_script:
+    - cp $ENV_TESTING $CI_PROJECT_DIR/.env
   script:
-    - docker compose --profile testing build
-    - docker compose --profile testing up --wait
+    - docker compose --profile testing up --build --wait
     - docker exec web_test sh -c 'python manage.py check && python manage.py test'
     - docker compose --profile testing down
 
@@ -22,9 +23,10 @@ staging:
   environment: staging
   only:
     - staging
+  before_script:
+    - cp $ENV_STAGING $CI_PROJECT_DIR/.env
   script:
-    - docker compose --profile staging build
-    - docker compose --profile staging up --wait
+    - docker compose --profile staging up --build --wait
 
 production:
   stage: production
@@ -32,7 +34,8 @@ production:
     - production
   environment: production
   only:
-    - main
+    - tag
+  before_script:
+    - cp $ENV_STAGING $CI_PROJECT_DIR/.env
   script:
-    - docker compose --profile production build
-    - docker compose --profile production up --wait
+    - docker compose --profile production up --build --wait

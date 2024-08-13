@@ -1,101 +1,62 @@
-version: "3.8"
-
 volumes:
   postgres_data: {}
   storage_data: {}
   storage_logs: {}
 
 services:
-  postgres_testing:
+  db_testing:
     image: postgres:latest
     profiles:
       - testing
-    env_file: src/.env
-    environment:
-      - POSTGRES_DB=$PG_DB_STAGING
-      - POSTGRES_USER=$PG_USER_STAGING
+    env_file: .env
+    container_name: db_testing
     healthcheck:
-      test: sh -c 'pg_isready -U $PG_USER_STAGING -d $PG_DB_STAGING'
+      test: sh -c 'pg_isready -U $POSTGRES_USER -d $POSTGRES_DB'
       interval: 30s
       timeout: 5s
       retries: 5
 
-  django_test:
+  web_testing:
     build:
       context: .
       dockerfile: ./package/Dockerfile
+    profiles:
+      - testing
+    env_file: .env
+    container_name: web_testing
     depends_on:
       postgres_testing:
         condition: service_healthy
-    env_file: $CONFIG_PATH_STAGING/.env
     links:
-      - "postgres:database"
+      - "db_testing:database"
 
-  postgres_staging:
+  db:
     image: postgres:latest
-    profiles:
-      - staging
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=$PG_DB_STAGING
-      - POSTGRES_USER=$PG_USER_STAGING
+    env_file: .env
+    container_name: db
     healthcheck:
-      test: sh -c 'pg_isready -U $PG_USER_STAGING -d $PG_DB_STAGING'
+      test: sh -c 'pg_isready -U $POSTGRES_USER -d $POSTGRES_DB'
       interval: 30s
       timeout: 5s
       retries: 5
     ports:
       - "127.0.0.1:5432:5432"
 
-  django_staging:
+  web:
     build:
       context: .
       dockerfile: ./packaging/staging/Dockerfile
-    profiles:
-      - staging
+    container_name: web
     volumes:
       - web_media:/src/media:rw
       - web_logs:/src/logging:rw
     depends_on:
       postgres_staging:
         condition: service_healthy
-    env_file: $CONFIG_PATH_STAGING/.staging.env
+    env_file: .env
     ports:
       - "127.0.0.1:8000:8000"
     links:
-      - "postgres_staging:database"
-
-  postgres:
-    image: postgres:latest
-    profiles:
-      - production
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    env_file: $CONFIG_PATH_PRODUCTION/.env
-    environment:
-      - POSTGRES_DB=$PG_DB_PROD
-      - POSTGRES_USER=$PG_USER_PROD
-    healthcheck:
-      test: sh -c 'pg_isready -U $PG_USER_PROD -d $PG_DB_PROD'
-      interval: 30s
-      timeout: 5s
-      retries: 5
-    ports:
-      - "127.0.0.1:5432:5432"
-
-  django:
-    build:
-      context: .
-      dockerfile: ./package/Dockerfile
-    volumes:
-      - storage_logs:/src/logging:rw
-      - storage_data:/src/media:rw
-    depends_on:
-      postgres:
-        condition: service_healthy
-    env_file: $CONFIG_PATH_PRODUCTION/.env
-    ports:
-      - "127.0.0.1:8000:8000"
-    links:
-      - "postgres:database"
+      - "db:database"

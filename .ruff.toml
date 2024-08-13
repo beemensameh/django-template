@@ -13,7 +13,7 @@ ignore = ["DJ007", "DJ008"]
 [lint.isort]
 combine-as-imports = true
 force-sort-within-sections = true
-known-first-party = ["config", "utils", "api_users", "block_ips", "central_points", "collectings", "customers", "governorates", "notifications", "orders", "price_lists", "regions", "vehicle_types", "vendors"]
+known-first-party = ["config"]
 section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
 
 [lint.isort.sections]
