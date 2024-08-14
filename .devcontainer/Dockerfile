@@ -1,9 +1,8 @@
 FROM python:3.12.3-slim
 
-RUN apt update
-RUN apt install gettext git gcc -y
+RUN apt-get update
+RUN apt-get install gettext git gcc bash-completion make -y
 
-RUN apt install bash-completion
 RUN echo "if ! shopt -oq posix; then\n\
   if [ -f /usr/share/bash-completion/bash_completion ]; then\n\
     . /usr/share/bash-completion/bash_completion\n\
