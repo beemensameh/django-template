@@ -25,9 +25,6 @@ lint:
 	cd src && ruff check . --fix
 	cd src && ruff format
 
-test:
-	cd src && python manage.py test
-
 requirements:
 	pdm export -f requirements --without-hashes --prod -o requirements.txt
 
