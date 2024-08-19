@@ -26,10 +26,10 @@ lint:
 	cd src && ruff format
 
 requirements:
-	pdm export -f requirements --without-hashes --prod -o requirements.txt
+	pdm export --no-hashes --prod -o requirements.txt
 
 dev-requirements:
-	pdm export -f requirements --without-hashes -d -o requirements-dev.txt
+	pdm export --no-hashes -d -o requirements-dev.txt
 
 test:
 	cd src && python manage.py check

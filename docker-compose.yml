@@ -1,7 +1,7 @@
 volumes:
   postgres_data: {}
-  storage_data: {}
-  storage_logs: {}
+  web_media: {}
+  web_logs: {}
 
 services:
   db_testing:
@@ -19,7 +19,7 @@ services:
   web_testing:
     build:
       context: .
-      dockerfile: ./package/Dockerfile
+      dockerfile: ./packaging/testing/Dockerfile
     profiles:
       - testing
     env_file: .env
@@ -34,6 +34,8 @@ services:
     image: postgres:latest
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    profiles:
+      - production
     env_file: .env
     container_name: db
     healthcheck:
@@ -47,7 +49,9 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./packaging/staging/Dockerfile
+      dockerfile: ./packaging/deploy/Dockerfile
+    profiles:
+      - production
     container_name: web
     volumes:
       - web_media:/src/media:rw
