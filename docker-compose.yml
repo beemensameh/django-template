@@ -25,7 +25,7 @@ services:
     env_file: .env
     container_name: web_testing
     depends_on:
-      postgres_testing:
+      db_testing:
         condition: service_healthy
     links:
       - "db_testing:database"

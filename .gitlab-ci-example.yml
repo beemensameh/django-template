@@ -12,9 +12,7 @@ testing:
   before_script:
     - cp $ENV_TESTING $CI_PROJECT_DIR/.env
   script:
-    - docker compose --profile testing up --build --wait
-    - docker exec web_test sh -c 'python manage.py check && python manage.py test'
-    - docker compose --profile testing down
+    - docker compose --profile testing up --build --abort-on-container-exit
 
 staging:
   stage: staging
