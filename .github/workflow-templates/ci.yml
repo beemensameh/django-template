@@ -1,0 +1,15 @@
+name: Django CI
+
+on: [ pull_request ]
+
+jobs:
+  build:
+    runs-on: staging
+    steps:
+    - uses: actions/checkout@v4
+    - name: Copy .env File
+      run: |
+        cp ${{ vars.STAGING_ENV_PATH }} ${{ github.workspace }}/.env
+    - name: Run Tests
+      run: |
+        docker compose --profile testing up --build --abort-on-container-exit
