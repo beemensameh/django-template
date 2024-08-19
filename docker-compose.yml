@@ -53,7 +53,7 @@ services:
       - web_media:/src/media:rw
       - web_logs:/src/logging:rw
     depends_on:
-      postgres_staging:
+      db:
         condition: service_healthy
     env_file: .env
     ports:
