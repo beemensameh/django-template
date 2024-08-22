@@ -193,6 +193,12 @@ if DEBUG:
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1"]
 
+    # Rest framework
+
+    REST_FRAMEWORK = {
+        "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    }
+
     # Docs
 
     SPECTACULAR_SETTINGS = {
@@ -201,6 +207,7 @@ if DEBUG:
         "VERSION": "0.1.0",
         "SCHEMA_PATH_PREFIX": "/api/v[0-9]",
         "SERVE_INCLUDE_SCHEMA": False,
+        "SERVE_AUTHENTICATION": ["rest_framework.authentication.SessionAuthentication"],
         "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
         "SWAGGER_UI_SETTINGS": {
             "deepLinking": True,
