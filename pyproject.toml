@@ -30,5 +30,5 @@ dev = [
 
 [tool.black]
 line-length = 79
-target-version = ['py311']
+target-version = ['py312']
 force-exclude = 'migrations'
