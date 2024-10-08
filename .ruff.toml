@@ -1,5 +1,5 @@
 line-length = 85
-target-version = "py311"
+target-version = "py312"
 extend-exclude = ["migrations", "manage.py"]
 
 [format]
